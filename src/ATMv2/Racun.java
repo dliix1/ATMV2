@@ -49,22 +49,47 @@ public class Racun {
 	public static boolean provjeraDaLiPostojiRacunSaIstimBrojem(int brojRacuna) {
 		for (int i = 0; i < racunArrayLista.size(); i++) {
 			if (racunArrayLista.get(i).brojRacuna == brojRacuna)
-				return true;
+				return false;
+			System.out.println("Broj racuna vec postoji!");
 		}
-		return false;
+		return true;
 	}
 
-	public static String ispisRacuna(int brojRacuna) {
+	public static boolean ispisRacuna(int brojRacuna) {
 		for (int i = 0; i < racunArrayLista.size(); i++)
-			if (brojRacuna == racunArrayLista.get(i).brojRacuna) {
-				return "Broj racuna: " + racunArrayLista.get(i).brojRacuna
-						+ " Ime vlasnika racuna: "
-						+ racunArrayLista.get(i).imeVlasnikaRacuna
-						+ " Iznos na racunu: "
-						+ racunArrayLista.get(i).iznosNaRacunu;
+			if (racunArrayLista.get(i).brojRacuna == brojRacuna) {
+				System.out.println(racunArrayLista.get(i).toString());
+				return true;
 			}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return "\n Broj racuna: " + brojRacuna + "\n Ime: " + imeVlasnikaRacuna + "\n Trenutno stanje: " + iznosNaRacunu;
+	}
 
-		return "Unijeti broj racuna ne postoji.";
+	public static void transferNovca(int sourceRacun, int targetRacun,
+			double iznosKojiSePrebacuje) {
+
+		if (Validacija.provjeraZaTransfer(sourceRacun, targetRacun, iznosKojiSePrebacuje)) {
+
+			for (int i = 0; i < racunArrayLista.size(); i++) {
+
+				if (racunArrayLista.get(i).brojRacuna == sourceRacun) {
+					racunArrayLista.get(i).iznosNaRacunu -= iznosKojiSePrebacuje;
+				}
+
+				if (racunArrayLista.get(i).brojRacuna == targetRacun) {
+					racunArrayLista.get(i).iznosNaRacunu += iznosKojiSePrebacuje;
+				}
+
+				System.out.println("Transfer je uspjesno izvrsen!");
+				System.out.println("Iznos na vasem racunu: " +racunArrayLista.get(i).iznosNaRacunu);
+				System.out.println();
+			}
+		}
+
 	}
 
 }
