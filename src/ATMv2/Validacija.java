@@ -20,13 +20,13 @@ public class Validacija {
 
 	public static void provjeraZaSourceRacun(int sourceRacun) {
 		if (sourceRacun < 0) {
-			System.out.println("Unijeti broj source racuna nije prepoznat u bazi!");
+			System.out.println("Unesite ispravan broj source racuna!");
 		}
 	}
 
 	public static void provjeraZaTargetRacun(int targetRacun) {
 		if (targetRacun < 0) {
-			System.out.println("Unijeti broj target racuna nije prepoznat u bazi!");
+			System.out.println("Unesite ispravan broj target racuna!");
 		}
 	}
 
